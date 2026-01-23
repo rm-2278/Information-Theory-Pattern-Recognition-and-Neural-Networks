@@ -1,0 +1,43 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+
+\newcommand{\exercise}[1]{%
+  \section*{Exercise #1}%
+  \addcontentsline{toc}{section}{Exercise #1}%
+}
+
+\newtcolorbox{prob}[1]{colback=gray!5!white, colframe=gray!75!black, 
+title=\textbf{Exercise #1}}
+
+\begin{document}
+
+\exercise{1.2}
+\begin{prob}{1.2}
+Show that the error probability is reduced by the use of
+$R_{3}$ by computing the error probability of this code for a binary symmetric
+channel with noise level $f$.
+\end{prob}
+
+Answer: \\
+Without $R_{3}$, we have error probability $f$. \\
+With $R_{3}$, we have error probability
+\[
+_3C_2 (1-f)f^2 + f^3 = 3f^2 - 3f^3 + f^3 = 3f^2 - 2f^3
+\]
+Now, 
+\begin{align*}
+f - (3f^2 - 2f^3) &= f - 3f^2 + 2f^3 \\
+                &= f(1-2f)(1-f) > 0  \quad (\because f > \frac{1}{2})
+\end{align*}
+so $f > 3f^2 - 2f^3$ hence error probability reduced.
+
+
+
+
+\end{document}
+
