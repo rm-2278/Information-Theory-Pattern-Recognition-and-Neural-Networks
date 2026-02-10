@@ -148,21 +148,22 @@ can have scales \textit{linearly} with $F$ if $\mathcal{H}_1$ is more probable, 
 \begin{sol}
     From (3.12) and (3.20) in textbook,
 \begin{align*}
-    \log \frac{P(\mathbf{s} | F, \mathcal{H}_1)}{P(\mathbf{s} | F, \mathcal{H}_0)} &= \log \frac{F_a!F_b!}{(F_a+F_b+1)!} - \log p_0^{F_a}(1-p_0)^{F_b} \\
-    &= \log F_a! + \log F_b! - \log (F_a + F_b + 1)! - F_a \log p_0 - F_b \log (1-p_0) \\
-    &\approx F_a \log F_a - F_a + \frac{1}{2} \log(2\pi F_a) + F_b \log F_b - F_b + \frac{1}{2} \log(2\pi F_b) \\
-    & \quad - F \log F + F - \frac{1}{2} \log (2\pi F) \\
-    & \quad (\because \text{Stirling's approximation and } F \approx F_a + F_b + 1 \text{ for large F})\\
-    &= F_a \log \frac{F_a}{p_0} + F_b \log \frac{F_b}{1-p_0} - F \log F + \frac{1}{2} \log (8\pi^3 \frac{F_a F_b}{F}) \\
+    & \log \frac{P(\mathbf{s} | F, \mathcal{H}_1)}{P(\mathbf{s} | F, \mathcal{H}_0)} \\
+    =& \log \frac{F_a!F_b!}{(F_a+F_b+1)!} - \log p_0^{F_a}(1-p_0)^{F_b} \\
+    =& \log F_a! + \log F_b! - \log (F_a + F_b + 1)! - F_a \log p_0 - F_b \log (1-p_0) \\
+    =& \log F_a! + \log F_b! - \log (F+1) - \log F! - F_a \log p_0 - F_b \log (1-p_0) \quad (\because F = F_a + F_b) \\
+    \approx& F_a \log F_a - F_a + \frac{1}{2} \log(2\pi F_a) + F_b \log F_b - F_b + \frac{1}{2} \log(2\pi F_b) - \log F \\
+    & \quad - F \log F + F - \frac{1}{2} \log (2\pi F) \quad (\because \text{Stirling's approximation and } F \approx F + 1 \text{ for large F})\\
+    &= F_a \log \frac{F_a}{p_0} + F_b \log \frac{F_b}{1-p_0} - F \log F + \frac{1}{2} \log (2\pi \frac{F_a F_b}{F}) \\
 \end{align*}
 Now, let $f_a = \frac{F_a}{F}$, $f_b = \frac{F_b}{F}$ then
 \begin{align*}
-    &F_a \log \frac{F_a}{p_0} + F_b \log \frac{F_b}{1-p_0} - F \log F + \frac{1}{2} \log (8\pi^3 \frac{F_a F_b}{F})  
-    \\=& F \left( f_a \log \frac{f_a}{p_0} + f_b \log \frac{f_b}{1-p_0} \right) + \frac{1}{2} \log (8\pi^3 F f_a f_b)
+    &F_a \log \frac{F_a}{p_0} + F_b \log \frac{F_b}{1-p_0} - F \log F - \log F + \frac{1}{2} \log (2\pi \frac{F_a F_b}{F})  
+    \\=& F \left( f_a \log \frac{f_a}{p_0} + f_b \log \frac{f_b}{1-p_0} \right) - \frac{1}{2} \log F + \frac{1}{2} \log (2\pi f_a f_b)
 \end{align*}
 
 When $\mathcal{H}_1$ is more probable, $f_a \neq p_0$ so $f_a \log \frac{f_a}{p_0} + f_b \log \frac{f_b}{1-p_0}$ becomes a constant, hence log evidence ratio scales linearly with $F$. \\
-When $\mathcal{H}_0$ is more probable, $f_a \rightarrow p_0$ so $f_a \log \frac{f_a}{p_0} + f_b \log \frac{f_b}{1-p_0}$ becomes 0, and the second term will dominate. $f_a, f_b$ are constant hence log evidence ratio grows at most as $\log F$. \\
+When $\mathcal{H}_0$ is more probable, $f_a \rightarrow p_0$ so $f_a \log \frac{f_a}{p_0} + f_b \log \frac{f_b}{1-p_0}$ becomes 0. $f_a, f_b$ are constant and can be ignored so the second term will dominate. The log evidence ratio grows at most as $\log F$ (negatively). \\
 
 Note $f_a \log \frac{f_a}{p_0} + f_b \log \frac{f_b}{1-p_0} = KL(Q||P)$ where $Q$ is the observed distribution and $P$ is the null hypothesis distribution!
 
