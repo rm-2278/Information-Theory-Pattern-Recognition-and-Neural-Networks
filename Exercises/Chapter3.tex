@@ -135,6 +135,26 @@ What is the most probable value of $p_{\text{a}}$ (i.e., the value that maximize
         P(p_{\text{a}} \mid \mathbf{s} = \texttt{bbb}, F = 3) &= \frac{(1-p_a)^3}{\frac{3!}{4!}} = 4(1-p_a)^3 \\
     \end{align*}
     The graph is available in the following link: \href{https://www.desmos.com/calculator/falltenjzo}{www.desmos.com/calculator/falltenjzo}
+    
+    The most probable value is 
+    \begin{align*}
+        & \frac{d}{dp_a}(12p_a^2 (1-p_a)) = 0 \\
+        \iff & 2p_a - 3p_a^2 = 0 \\
+        \iff & p_a = \frac{2}{3} \quad (\text{check second derivative and boundary to verify this is the maximimum}) \\
+        \\
+        & \frac{d}{dp_a}(4(1-p_a)^3) = 0 \\
+        \iff & 3(1 - p_a)^2 = 0 \\ 
+        \iff & p_a = 1 \\
+        & \text{By checking boundary, } P(0) = 4, P(1) = 0 \quad \text{so maximum at } p_a = 0 \\
+    \end{align*}
+
+    The mean value is
+    \begin{align*}
+        \int_{0}^{1} (12p_a^2 (1-p_a)) p_a dp_a &= \frac{3}{5} \\
+        \\
+        \int_{0}^{1} (4(1-p_a)^3) p_a dp_a &= \frac{1}{5} \\
+    \end{align*}
+
 \end{sol}
 \bigskip
 
@@ -170,13 +190,155 @@ Note $f_a \log \frac{f_a}{p_0} + f_b \log \frac{f_b}{1-p_0} = KL(Q||P)$ where $Q
 \end{sol}
 \bigskip
 
-
-% template
-\begin{prob}{}
+\begin{prob}{3.7}
+    Putting your sampling theory hat on, assuming $F_{\mathrm{a}}$ has not yet been measured, compute a plausible range that the log evidence ratio might lie in, as a function of $F$ and the true value of $p_{\mathrm{a}}$, and sketch it as a function of $F$ for $p_{\mathrm{a}} = p_0 = 1/6$, $p_{\mathrm{a}} = 0.25$, and $p_{\mathrm{a}} = 1/2$. [Hint: sketch the log evidence as a function of the random variable $F_{\mathrm{a}}$ and work out the mean and standard deviation of $F_{\mathrm{a}}$.]
 \end{prob}
 \begin{sol}
+    From 3.6, for $p_{\mathrm{a}} = p_0 = 1/6$, the curve will asymptotically become a negative log curve, while with $p_{\mathrm{a}} = 0.25$, and $p_{\mathrm{a}} = 1/2$ the graph will asymptotically be a straight line with $p_{\mathrm{a}} = 1/2$ having a steeper gradient.
 \end{sol}
 \bigskip
+
+\begin{prob}{3.8}
+    \textbf{The three doors, normal rules.}
+
+On a game show, a contestant is told the rules as follows:
+\begin{quotation}
+There are three doors, labelled 1, 2, 3. A single prize has been hidden behind one of them. You get to select one door. Initially your chosen door will \textit{not} be opened. Instead, the gameshow host will open one of the other two doors, and \textit{he will do so in such a way as not to reveal the prize}. For example, if you first choose door 1, he will then open one of doors 2 and 3, and it is guaranteed that he will choose which one to open so that the prize will not be revealed.
+
+At this point, you will be given a fresh choice of door: you can either stick with your first choice, or you can switch to the other closed door. All the doors will then be opened and you will receive whatever is behind your final choice of door.
+\end{quotation}
+Imagine that the contestant chooses door 1 first; then the gameshow host opens door 3, revealing nothing behind the door, as promised. Should the contestant (a) stick with door 1, or (b) switch to door 2, or (c) does it make no difference?
+\end{prob}
+\begin{sol}
+    The contestant should (b) switch to door 2. let ``this'' be the event that the prize was in the first choice of door, ``other'' be the event that the prize was in the other unrevelead door, ``evi'' the revealed door being that specific door. Comparin the likelihood ratio. \\
+    $$\frac{P(\text{evi} | \text{this})}{P(\text{evi} | \text{other})} = \frac{\frac{1}{2}}{1} = \frac{1}{2}$$
+    so there is a double chance that the prize is in the other door.
+\end{sol}
+\bigskip
+
+\begin{prob}{3.9}\textbf{The three doors, earthquake scenario.}
+
+Imagine that the game happens again and just as the gameshow host is about to open one of the doors a violent earthquake rattles the building and one of the three doors flies open. It happens to be door 3, and it happens not to have the prize behind it. The contestant had initially chosen door 1.
+
+Repositioning his toup\'{e}e, the host suggests, `OK, since you chose door 1 initially, door 3 is a valid door for me to open, according to the rules of the game; I'll let door 3 stay open. Let's carry on as if nothing happened.'
+
+Should the contestant stick with door 1, or switch to door 2, or does it make no difference? Assume that the prize was placed randomly, that the gameshow host does not know where it is, and that the door flew open because its latch was broken by the earthquake.
+
+[A similar alternative scenario is a gameshow whose \textit{confused host} forgets the rules, and where the prize is, and opens one of the unchosen doors at random. He opens door 3, and the prize is not revealed. Should the contestant choose what's behind door 1 or door 2? Does the optimal decision for the contestant depend on the contestant's beliefs about whether the gameshow host is confused or not?]
+\end{prob}
+\begin{sol}
+    The likelihood ratio will be
+        $$\frac{P(\text{evi} | \text{this})}{P(\text{evi} | \text{other})} = 1$$
+    with the assumption that all doors have equal probability of breaking (symmetry) and independence from the player decision, so there will be no difference.
+\end{sol}
+\bigskip
+
+\begin{prob}{3.10}
+    Another example in which the emphasis is not on priors. You visit a family whose three children are all at the local school. You don't know anything about the sexes of the children. While walking clumsily round the home, you stumble through one of the three unlabelled bedroom doors that you know belong, one each, to the three children, and find that the bedroom contains girlie stuff in sufficient quantities to convince you that the child who lives in that bedroom is a girl. Later, you sneak a look at a letter addressed to the parents, which reads `From the Headmaster: we are sending this letter to all parents who have male children at the school to inform them about the following boyish matters...'.
+    
+    These two sources of evidence establish that at least one of the three children is a girl, and that at least one of the children is a boy. What are the probabilities that there are (a) two girls and one boy; (b) two boys and one girl?
+\end{prob}
+\begin{sol}
+    The bedroom evidence is a sampling evidence, while the letter evidence is a logical evidence. So, 
+    \begin{align*}
+        P(GGB | \text{evi}) &= \frac{P(\text{evi}|GGB)P(GGB)}{P(evi)} \\
+        P(BBG | \text{evi}) &= \frac{P(\text{evi}|BBG)P(BBG)}{P(evi)} \\
+    \end{align*}
+    We can simplify this to use the ratio of the two and then normalize it. $P(GGB) = P(BBG)$ so
+    \begin{align*}
+        P(GGB | \text{evi}) &\propto P(\text{evi}|GGB) = \frac{2}{3} \\
+        P(BBG | \text{evi}) &\propto P(\text{evi}|BBG) = \frac{1}{3} \\
+    \end{align*}
+    This is already normalized so
+    \begin{align*}
+        P(GGB | \text{evi}) &= \frac{2}{3} \\
+        P(BBG | \text{evi}) &= \frac{1}{3} \\
+    \end{align*}
+\end{sol}
+\bigskip
+
+
+\begin{prob}{3.11}
+    Mrs S is found stabbed in her family garden. Mr S behaves strangely after her death and is considered as a suspect. On investigation of police and social records it is found that Mr S had beaten up his wife on at least nine previous occasions. The prosecution advances this data as evidence in favour of the hypothesis that Mr S is guilty of the murder. `Ah no,' says Mr S's highly paid lawyer, `statistically, only one in a thousand wife-beaters actually goes on to murder his wife.$^1$ So the wife-beating is not strong evidence at all. In fact, given the wife-beating evidence alone, it's extremely unlikely that he would be the murderer of his wife -- only a 1/1000 chance. You should therefore find him innocent.'
+    
+    Is the lawyer right to imply that the history of wife-beating does not point to Mr S's being the murderer? Or is the lawyer a slimy trickster? If the latter, what is wrong with his argument?
+\end{prob}
+\begin{sol}
+    \begin{align*}
+        P(S_{\text{guilty}} | \text{beaten}, \text{murdered}) &= \frac{P(\text{beaten} | S_{\text{guilty}}, \text{murdered})P(S_{\text{guilty}})}{P(\text{beaten} | \text{murdered})} \\
+    \end{align*}
+    We must compare $P(\text{beaten} | S_{\text{guilty}}, \text{murdered})$ against $P(\text{beaten} | \text{murdered})$ to really conclude how the evidence affects how likely Mr S is guilty. \\
+    In fact, $P(\text{beaten} | S_{\text{guilty}}, \text{murdered})$ will likely be higher, so the lawyer is a slimy trickster. In other words, he is stating the probability of a wife-beater murdering the wife, whereas we need the probability of the wife-beating husband murdering the wife given the wife is murdered.
+\end{sol}
+\bigskip
+
+\begin{prob}{3.12}
+    A bag contains one counter, known to be either white or black. A white counter is put in, the bag is shaken, and a counter is drawn out, which proves to be white. What is now the chance of drawing a white counter? [Notice that the state of the bag, after the operations, is exactly identical to its state before.]
+\end{prob}
+\begin{sol}
+    \begin{align*}
+        P(W_2 | W_1) &= P(WW | W_1) \\
+        &= \frac{P(W_1 | WW) P(WW)}{P(W_1)} \\
+        &= \frac{P(W_1 | WW) P(WW)}{P(W_1 | WW) P(WW) + P(W_1 | WB) P(WB)} \\
+        &= \frac{1 \times \frac{1}{2}}{1 \times \frac{1}{2} + \frac{1}{2} \times \frac{1}{2}} \\
+        &= \frac{2}{3}
+    \end{align*}
+    This is due to survivor bias.
+\end{sol}
+\bigskip
+
+\begin{prob}{3.13}
+    You move into a new house; the phone is connected, and you're pretty sure that the phone number is 740511, but not as sure as you would like to be. As an experiment, you pick up the phone and dial 740511; you obtain a `busy' signal. Are you now more sure of your phone number? If so, how much?
+\end{prob}
+\begin{sol}
+    Let N be that the number is indeed correct, and E the evidence (the phone was busy).
+    \begin{align*}
+        P(N | E) &= \frac{P(E | N)P(N)}{P(E)} \\
+        &= \frac{P(N)}{P(E)}
+    \end{align*}
+    Now, $P(E) = P(E|N)P(N) + P(E|\bar{N})P(\bar{N})$. If we say we think $P(N) = 0.9$ and $P(E|\bar{N}) = \frac{1}{1000}$ (considering unused phone numbers and phones that are not busy), then we have
+    $$P(E) = 0.9 + \frac{0.1}{10000} = 0.90001$$ so we now have confidence of $0.9999$.
+\end{sol}
+\bigskip
+
+\begin{prob}{3.14}
+In a game, two coins are tossed. If either of the coins comes up heads, you have won a prize. To claim the prize, you must point to one of your coins that is a head and say ‘look, that coin’s a head, I’ve won’. You watch Fred play the game. He tosses the two coins, and he
+\end{prob}
+\begin{sol}
+    Let D be the case Fred has double coins head, and W the case Fred won the game.
+    $$P(D|W) = \frac{P(W|D)P(D)}{P(W)} = \frac{1 \cdot \frac{1}{4}}{\frac{3}{4}} = \frac{1}{3}$$
+\end{sol}
+\bigskip
+
+\begin{prob}{3.15}
+    A statistical statement appeared in \textit{The Guardian} on Friday January 4, 2002:
+\begin{quote}
+    When spun on edge 250 times, a Belgian one-euro coin came up heads 140 times and tails 110. ‘It looks very suspicious to me’, said Barry Blight, a statistics lecturer at the London School of Economics. ‘If the coin were unbiased the chance of getting a result as extreme as that would be less than 7\%’.
+\end{quote}
+But \textit{do} these data give evidence that the coin is biased rather than fair? [Hint: see equation (3.22).]
+\end{prob}
+\begin{sol}
+    If we assume the prior to be uniform,
+    \begin{align*}
+        \frac{P(H_1 | s, F)}{P(H_0 | s, F)} &= \left. \frac{140! 110!}{251!} \middle/ \frac{1}{2}^{250} \right. \quad (\because (3.22)) \\
+        &= 0.477 \\
+    \end{align*}
+    which still favours the unbiased case. \\
+    Even if we assume the extreme case, where $H_1$ prior to be $1$ at exactly $f = \frac{140}{250}$, we get 
+    \begin{align*}
+        \frac{P(H_1 | s, F)}{P(H_0 | s, F)} &= 2^{250} f^{140} (1-f)^{110} = 6.08
+    \end{align*}
+    where the hypothesis that there is bias is only six times more likely than the unbiased case.
+\end{sol}
+\bigskip
+
+
+% % template
+% \begin{prob}{}
+% \end{prob}
+% \begin{sol}
+% \end{sol}
+% \bigskip
 
 
 \end{document}

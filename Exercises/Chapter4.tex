@@ -1,0 +1,42 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage[bottom=3cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\tcbuselibrary{breakable}
+\tcbuselibrary{skins}
+
+\newtcolorbox{prob}[1]{colback=gray!5!white, colframe=gray!75!black, 
+title=\textbf{Exercise #1}}
+
+\newtcolorbox{sol}{
+    breakable,
+    colback=white,      % Background matches page
+    colframe=white,     % Frame matches page (invisible)
+    frame hidden,       % Hides the border line
+    left=3mm, right=3mm,% MATCHES the Question box padding
+    boxrule=0mm,        % No border width
+    top=0mm, bottom=0mm,% Tight vertical spacing
+    parbox=false,       % Allows paragraphs to break normally
+    before upper={\textbf{Solution:}\par\medskip} % Automatically adds "Solution:" title
+}
+
+
+\begin{document}
+
+% template
+\begin{prob}{}
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+
+\end{document}
+
+
+

@@ -8,3 +8,7 @@ pdflatex -interaction=nonstopmode exercise_2_14.tex
 pdftocairo -png -singlefile -r 150 exercise_2_14.pdf exercise_2_14
 ```
 The `standalone` class keeps the page tightly cropped, so the resulting PNG can be dropped anywhere in the README without extra editing.
+
+### Issues
+3.7
+4 - 50
