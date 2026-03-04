@@ -7,6 +7,7 @@
 \usepackage{enumitem}
 \usepackage[bottom=3cm]{geometry}
 \usepackage[hidelinks]{hyperref}
+\usepackage{forest}
 \tcbuselibrary{breakable}
 \tcbuselibrary{skins}
 
@@ -124,6 +125,160 @@ What are the mathematical shapes of the curves between the cusps?
     so the graph (within the same cusp) will be the shape of $y = \log(n-x)$ where $n$ constant (logarithmic).
 \end{sol}
 \bigskip
+
+\begin{prob}{4.9}
+    While some people, when they first encounter the weighing
+problem with 12 balls and the three-outcome balance (exercise 4.1
+(p.66)), think that weighing six balls against six balls is a good first
+weighing, others say `no, weighing six against six conveys \textit{no} informa-
+tion at all'. Explain to the second group why they are both right and
+wrong. Compute the information gained about \textit{which is the odd ball},
+and the information gained about \textit{which is the odd ball and whether it is
+heavy or light}.
+\end{prob}
+\begin{sol}
+    They are right in the sense that which ball is odd or whether it is heavier or lighter is undetermined at all (all have same probability) so 0 bit gained for each category. \\
+    However, there is information gained with respect to which ball is odd \textbf{and} heavier or lighter. Half the combinations out of 24 is eliminated, so 1 bit of information gained.
+\end{sol}
+\bigskip
+
+
+\begin{prob}{4.10}
+    Solve the weighing problem for the case where there are 39
+balls of which one is known to be odd.
+\end{prob}
+\begin{sol}
+    Solve similarly to how we solved question 4.1. For the worst case, weight 13 balls against each other, then 4 balls, then 2 balls, then 1 ball, which takes 4 weighings.
+\end{sol}
+\bigskip
+
+
+\begin{prob}{4.11}
+    You are given 16 balls, all of which are equal in weight except
+for one that is either heavier or lighter. You are also given a bizarre two-
+pan balance that can report only two outcomes: `the two sides balance'
+or `the two sides do not balance'. Design a strategy to determine which
+is the odd ball in as few uses of the balance as possible.
+\end{prob}
+\begin{sol}
+    There are only two outcomes per weighing, so we can only gain at most 2 bits per weighing. \\
+\begin{forest}
+  for tree={draw, circle, minimum size=20pt, s sep=2mm, l=10mm}
+  [16, label=below:{\small 4 vs 4}
+    [8, label=below:{\small 2 vs 2}
+      [4, label=below:{\small 1 vs 1}
+        [2, label=below:{\small 1 vs 1}
+            [1]
+            [1]
+        ]
+        [2, label=below:{\small 1 vs 1}
+            [1]
+            [1]
+        ]
+      ]
+      [4, label=below:{\small 1 vs 1}
+        [2, label=below:{\small 1 vs 1}
+            [1]
+            [1]
+        ]
+        [2, label=below:{\small 1 vs 1}
+            [1]
+            [1]
+        ]
+      ]
+    ]
+    [8, label=below:{\small 2 vs 2}
+      [4, label=below:{\small 1 vs 1}
+        [2, label=below:{\small 1 vs 1}
+            [1]
+            [1]
+        ]
+        [2, label=below:{\small 1 vs 1}
+            [1]
+            [1]
+        ]
+      ]
+      [4, label=below:{\small 1 vs 1}
+        [2, label=below:{\small 1 vs 1}
+            [1]
+            [1]
+        ]
+        [2, label=below:{\small 1 vs 1}
+            [1]
+            [1]
+        ]
+      ]
+    ]
+  ]
+\end{forest} 
+\\
+
+As above, 4 weighings are needed.
+\end{sol}
+\bigskip
+
+
+\begin{prob}{4.12}
+    You have a two-pan balance; your job is to weigh out bags of
+flour with integer weights 1 to 40 pounds inclusive. How many weights
+do you need? [You are allowed to put weights on either pan. You're only
+allowed to put one flour bag on the balance at a time.]
+\end{prob}
+\begin{sol}
+    We can solve this problem using binary search. \\
+    For example, if in all weighings the bags of flour was heavier, we can weigh against 20, 30, 35, 38, 39 in that order. \\
+    We need 5 weights.
+\end{sol}
+\bigskip
+
+
+\begin{prob}{4.13}
+\begin{enumerate}
+    \item[(a)] Is it possible to solve exercise 4.1 (p.66) (the weighing problem with 12 balls and the three-outcome balance) using a
+sequence of three \textit{fixed} weighings, such that the balls chosen for the
+second weighing do not depend on the outcome of the first, and the
+third weighing does not depend on the first or second?
+    \item[(b)] Find a solution to the general $N$-ball weighing problem in which
+exactly one of $N$ balls is odd. Show that in $W$ weighings, an odd
+ball can be identified from among $N = (3^W - 3)/2$ balls.
+\end{enumerate}
+\end{prob}
+\begin{sol}
+\begin{enumerate}
+    \item[(a)] Yes. We can label each ball as AAB, ABA, ABB, ABC, BBC, BCA, BCB, BCC, CAA, CAB, CAC, CCA.
+    Then, for $i$th weighing, for each ball look at $i - 1$th letter and if it is A weigh on left pan, if B weigh on right pan, and if C do not use for weighing.
+    Then, take the result of the weighing and if left pan heavier say A, right pan heavier say B, and balanced C (For example, if left pan heavy, balanced, left pan heavy then the sequence for the weighing is BCB).
+    The sequence obtained will uniquely indicate which ball was odd and whether it was heavier or lighter. If the sequence exactly matches, the ball is odd and heavier and if the sequence matches in a inverted way (e.g. BBA match AAB invertedly), the ball is odd and lighter.
+    The sequence for the ball is chosen in a way such that at each weighing 4 balls are weighed against 4 balls, all balls are weighed (no CCC), no balls that are always weighed against each other which gives no distinction of heavy/light between them (AAA, BBB) and none are inverse of another (the first letter change is always A $\rightarrow$ B, B $\rightarrow$ C or C $\rightarrow$ A).
+    \item[(b)] We can have $3^W$ results from the weighing, and this can be corresponded to each ball as in (a).
+    As described in (a), we must not use AAA, BBB and CCC, requiring subtracition by 3.
+    Also, we must remove inverses since ABC heavy and CBA light will give the same result, which requires dividing by 2.
+    Hence we get $N = \frac{3^W - 3}{2}$.
+\end{enumerate}
+\end{sol}
+\bigskip
+
+
+\begin{prob}{4.14}
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+
+\begin{prob}{}
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
+
+\begin{prob}{}
+\end{prob}
+\begin{sol}
+\end{sol}
+\bigskip
+
 
 % template
 \begin{prob}{}
